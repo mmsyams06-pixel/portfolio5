@@ -1,0 +1,100 @@
+def total(harga, jumlah):
+    if harga <= 0 or jumlah <= 0:
+        return None
+    total_harga = harga*jumlah
+    if jumlah > 5:
+        total_harga *= 0.9
+    return total_harga
+keranjang = []    
+while True:
+    print()
+    print ("PROGRAM KASIR SEDERHANA")
+    print("------------------------")
+    print()
+
+  
+
+    item = ""
+    while not item.strip():
+        try:
+            item = str(input("Masukkan barang yang dibeli: "))
+        except ValueError:
+            print ("Item tidak boleh berupa angka")
+
+    harga = None
+    while True:
+        try:
+            harga = float(input("Masukkan harga: "))
+            if harga <= 0:
+                print ("Harga harus lebih dari 0. Coba Lagi!: ")
+                continue
+            break
+        except ValueError:
+            print ("Harga harus berupa angka. Coba Lagi!: ")
+        
+    jumlah = None
+    while True:
+        try:
+            jumlah = int(input("Masukkan jumlah: "))
+            if jumlah <= 0:
+                print ("Jumlah tidak valid. Coba lagi! : ")
+                continue
+            break
+        except ValueError:
+            print ("Jumlah harus berupa angka. Coba Lagi!: ")
+
+    harga_total = total(harga, jumlah)
+    print("----------------------------------")
+    print ("---------STRUK BELANJA-----------")
+    print (f"Barang yang dibeli: {item}")
+    print (f"Harga: Rp. {harga}")
+    print (f"Jumlah: {jumlah}")
+
+    if jumlah >  5:
+        print ("Diskon 10%")
+    
+    print (f"TOTAL: Rp. {harga_total}")
+    print("----------------------------------")
+
+    keranjang.append ({
+        "Nama": item,
+        "Harga": harga,
+        "Jumlah": jumlah,
+        "Total": harga_total
+    })
+
+    
+
+    lanjut= input("Lanjutkan transaksi? (y/n)").lower()
+    if lanjut != "y":
+        print ("Transaksi Selesai")
+        print ("Terima kasih")
+        break
+
+print()
+print("----------GRAND TOTAL-------------")
+grand_total=0
+for i, barang in enumerate (keranjang, start=1):
+    print (f"{i}. {barang["Nama"]} |"
+           f"{barang["Harga"]} x {barang["Jumlah"]} = {barang["Total"]}")
+    grand_total += barang["Total"]
+
+print(f"\nTotal Bayar: Rp. {grand_total}")
+
+
+
+
+
+  
+
+
+
+    
+
+
+
+
+
+
+    
+    
